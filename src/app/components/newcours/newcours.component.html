@@ -1,0 +1,34 @@
+<div class="container">
+  <form [formGroup]="coursFormGroup" *ngIf="coursFormGroup">
+
+    <div class="form-group">
+      <label>Idcours</label>
+      <input type="text" class="form-control" value="{{idcours}}" readonly="readonly">
+    </div>
+
+    <div class="form-group">
+      <label>Matiere</label>
+      <input type="text" class="form-group" formControlName="matiere"
+          [ngClass]="{'is-invalid': submitted && coursFormGroup.controls.matiere.errors}">
+      <div *ngIf="submitted && coursFormGroup.controls.matiere.errors" class="invalid-feedback">
+        <div *ngIf="coursFormGroup.controls.matiere.errors.required">
+          Matiere obligatoire
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Nombre d'heures</label>
+      <input type="text" class="form-control" formControlName="heures"
+            [ngClass]="{'is-invalid': submitted && coursFormGroup.controls.heures.errors}">
+      <div *ngIf="submitted && coursFormGroup.controls.heures.errors" class="invalid-feedback">
+        <div *ngIf="coursFormGroup.controls.heures.errors.required">
+          Nombre d'heures obligatoire
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
+</div>

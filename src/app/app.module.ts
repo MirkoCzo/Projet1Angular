@@ -10,8 +10,10 @@ import { LocalComponent } from './components/local/local.component';
 import { SessionCoursComponent } from './components/session-cours/session-cours.component';
 import { FormateurComponent } from './components/formateur/formateur.component';
 import { InfosComponent } from './components/infos/infos.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { NewcoursComponent } from './components/newcours/newcours.component';
+import { EditcoursComponent } from './components/editcours/editcours.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,16 @@ import {HttpClientModule} from "@angular/common/http";
     LocalComponent,
     SessionCoursComponent,
     FormateurComponent,
-    InfosComponent
+    InfosComponent,
+    NewcoursComponent,
+    EditcoursComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

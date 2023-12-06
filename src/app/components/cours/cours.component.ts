@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   templateUrl: './cours.component.html',
   styleUrl: './cours.component.css'
 })
-export class CoursComponent {
+export class CoursComponent implements OnInit{
   cours?: Cours[];
 
   constructor(private coursService: CoursService, private router:Router) {

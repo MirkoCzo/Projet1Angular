@@ -1,0 +1,70 @@
+<div class="container">
+  <form [formGroup]="coursFormGroup" *ngIf="coursFormGroup">
+
+    <div class="form-group">
+      <label>IDCOURS</label>
+      <input type="text" class="form-control" formControlName="idcours" readonly>
+    </div>
+
+    <div class="form-group">
+      <label>Matiere</label>
+      <input type="text" class="form-control" formControlName="matiere"
+             [ngClass]="{'is-invalid': submitted && coursFormGroup.controls.matiere.errors}">
+      <div *ngIf="submitted && coursFormGroup.controls.matiere.errors" class="invalid-feedback">
+        <div *ngIf="coursFormGroup.controls.matiere.errors.required">
+          Matiere obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Nombre d'heures</label>
+      <input type="text" class="form-control" formControlName="heures"
+             [ngClass]="{'is-invalid': submitted && coursFormGroup.controls.heures.errors}">
+      <div *ngIf="submitted && coursFormGroup.controls.heures.errors" class="invalid-feedback">
+        <div *ngIf="coursFormGroup.controls.heures.errors.required">
+          Heures obligatoire
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+      <ul class="navbar navbar-nav">
+        <li class="nav-item">
+          <button (click)="onUpdateCours()" class="btn btn-success">
+            Save
+          </button>
+        </li>
+        <li class="nav-item">
+          <button (click)="onSeeSessionCours()" class="btn btn-success">
+            Sessions de cours
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </form>
+  <ng-container *ngIf="sessionCours">
+    <ng-container *ngIf="sessionCours.length>0 else vide">
+      <table class="table">
+        <thead>
+        <th>IdSession</th>
+        <th>date de debut</th>
+        <th>date de fin</th>
+        <th>nombre d'inscrits</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let sc of sessionCours">
+          <td>{{sc.idsessioncours}}</td>
+          <td>{{sc.date_debut| date: 'dd-MM-yyyy'}}</td>
+          <td>{{sc.date_fin| date: 'dd-MM-yyyy'}}</td>
+          <td>{{sc.nbreinscrits}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-template #vide>
+      Aucune session pour ce cours
+    </ng-template>
+
+  </ng-container>
+</div>
+
+<!--  TODO <app-newSessionCours a developper-->
