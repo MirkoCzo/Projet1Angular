@@ -15,6 +15,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { NewcoursComponent } from './components/newcours/newcours.component';
 import { EditcoursComponent } from './components/editcours/editcours.component';
 import { NewsessioncoursComponent } from './components/newsessioncours/newsessioncours.component';
+import { EditsessioncoursComponent } from './components/editsessioncours/editsessioncours.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NewsessioncoursComponent } from './components/newsessioncours/newsessio
     InfosComponent,
     NewcoursComponent,
     EditcoursComponent,
-    NewsessioncoursComponent
+    NewsessioncoursComponent,
+    EditsessioncoursComponent
   ],
   imports: [
     BrowserModule,
