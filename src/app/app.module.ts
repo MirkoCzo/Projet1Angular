@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { NewcoursComponent } from './components/newcours/newcours.component';
 import { EditcoursComponent } from './components/editcours/editcours.component';
+import { NewsessioncoursComponent } from './components/newsessioncours/newsessioncours.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditcoursComponent } from './components/editcours/editcours.component';
     FormateurComponent,
     InfosComponent,
     NewcoursComponent,
-    EditcoursComponent
+    EditcoursComponent,
+    NewsessioncoursComponent
   ],
   imports: [
     BrowserModule,

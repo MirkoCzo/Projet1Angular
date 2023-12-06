@@ -1,0 +1,27 @@
+<div class="container">
+  <form [formGroup]="sessionCoursFormGroup" *ngIf="sessionCoursFormGroup">
+    <table class="table">
+      <thead>
+      <th>Date de début</th>
+      <th>Date de fin</th>
+      <th>Nombre d'inscrits</th>
+      <th>Id du local</th>
+      <th>Id du cours</th>
+      </thead>
+      <tbody>
+      <td *ngIf="sc; else vide">{{sc.idsessioncours}}</td>
+      <ng-template #vide><td></td></ng-template>
+      <td></td>
+      <td> <input type="date" class="form-control" formControlName="datedebut"></td>
+      <td> <input type="date" class="form-control" formControlName="datefin"></td>
+      <td> <input type="text" class="form-control" formControlName="nbreinscrits"></td>
+      <td> <input type="text" class="form-control" formControlName="idlocal"></td>
+      <td> <input type="text" class="form-control" formControlName="idcours"></td>
+      </tbody>
+    </table>
+    <button (click)="onSaveSessionCours()" class="btn btn-success">
+      Save
+    </button>
+  </form>
+
+</div>
