@@ -42,10 +42,10 @@ export class EditcoursComponent implements OnInit{
 
   onSeeSessionCours(): void{
     this.sessionCoursService.getSessionCoursCours(this.idCours).subscribe(
-      data =>{this.sessionCours=data},
-      err => {alert(err.headers.get("error"));
-      });
+      data =>{this.sessionCours=data}
+    )
   }
+
 
   onAddSessionCours(sc:SessionCours): void{
     this.sessionCours?.push(sc);

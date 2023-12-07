@@ -19,7 +19,7 @@ export class NewcoursComponent implements OnInit{
     this.coursFormGroup = this.fb.group({
       matiere: ["",Validators.required],
       heures: ["",Validators.required]
-    })
+    });
   }
 
   onSaveCours()

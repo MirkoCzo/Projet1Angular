@@ -16,7 +16,7 @@ export class SessionCoursService{
   }
 
   save(sc: SessionCours): Observable<SessionCours>{
-    return this.http.post<SessionCours>(this.host+'/sessionCours/',sc);
+    return this.http.post<SessionCours>(this.host+'/sessionCours',sc);
   }
 
   getSessionCours(idsessioncours: number): Observable<SessionCours>{
@@ -24,10 +24,11 @@ export class SessionCoursService{
   }
 
   updateSessionCours(sc: SessionCours): Observable<SessionCours>{
+    console.log(sc);
     return this.http.put<SessionCours>(this.host+'/sessionCours/'+sc.idsessioncours,sc);
   }
   getSessionCoursCours(idCours: number): Observable<SessionCours[]>{
-    return this.http.get<SessionCours[]>(this.host+'/sessionCours/idcours='+idCours);
+    return this.http.get<SessionCours[]>(this.host+'/sessionCours/idcours/'+idCours);
   }
 
 

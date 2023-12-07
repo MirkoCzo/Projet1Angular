@@ -1,1 +1,10 @@
-<p>session-cours works!</p>
+<form (ngSubmit)="onSearch()" class="form-inline">
+  <label>Id de session</label>
+  <input [(ngModel)]="idsession" name="idsession" type="text">
+  <button class="btn btn-sm btn-outline-info m-lg-2">
+    <span class="fa fa-search"></span>
+  </button>
+</form>
+<ng-container *ngIf="sessionCours">
+  <app-editsessioncours [sessionCours]="sessionCours"></app-editsessioncours>
+</ng-container>

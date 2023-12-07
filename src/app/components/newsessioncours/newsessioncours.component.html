@@ -9,9 +9,7 @@
       <th>Id du cours</th>
       </thead>
       <tbody>
-      <td *ngIf="sc; else vide">{{sc.idsessioncours}}</td>
-      <ng-template #vide><td></td></ng-template>
-      <td></td>
+
       <td> <input type="date" class="form-control" formControlName="datedebut"></td>
       <td> <input type="date" class="form-control" formControlName="datefin"></td>
       <td> <input type="text" class="form-control" formControlName="nbreinscrits"></td>

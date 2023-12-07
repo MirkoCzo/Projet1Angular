@@ -3,12 +3,12 @@
 
     <div class="form-group">
       <label>Idcours</label>
-      <input type="text" class="form-control" value="{{idcours}}" readonly="readonly">
+      <input type="text" class="form-control" value="{{idcours}}" readonly disabled>
     </div>
 
     <div class="form-group">
       <label>Matiere</label>
-      <input type="text" class="form-group" formControlName="matiere"
+      <input type="text" class="form-control" formControlName="matiere"
           [ngClass]="{'is-invalid': submitted && coursFormGroup.controls.matiere.errors}">
       <div *ngIf="submitted && coursFormGroup.controls.matiere.errors" class="invalid-feedback">
         <div *ngIf="coursFormGroup.controls.matiere.errors.required">
@@ -25,10 +25,10 @@
         <div *ngIf="coursFormGroup.controls.heures.errors.required">
           Nombre d'heures obligatoire
         </div>
-
       </div>
-
     </div>
-
+    <button (click)="onSaveCours()" class="btn btn-success">
+      Save
+    </button>
   </form>
 </div>

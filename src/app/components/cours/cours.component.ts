@@ -10,7 +10,10 @@ import {Router} from "@angular/router";
   styleUrl: './cours.component.css'
 })
 export class CoursComponent implements OnInit{
-  cours?: Cours[];
+  listcours?: Cours[];
+  cours?: Cours;
+  searchType: string = '';
+
 
   constructor(private coursService: CoursService, private router:Router) {
   }
@@ -22,7 +25,24 @@ export class CoursComponent implements OnInit{
   onSearch(value: any){
     this.coursService.findCoursByMatiere(value.matiere).subscribe(
       data=>{
-        this.cours = data
+        this.listcours = data
+      }
+    )
+  }
+
+  onSearchAll()
+  {
+    this.coursService.getAllCours().subscribe(
+      data =>{
+        this.listcours = data
+      }
+    )
+  }
+  onSearchByHeures(value: any)
+  {
+    this.coursService.findCoursByHeures(value.heures).subscribe(
+      data=>{
+        this.listcours = data
       }
     )
   }

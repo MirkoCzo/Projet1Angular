@@ -22,8 +22,9 @@ export class CoursService{
     return this.http.get<Cours[]>(this.host+'/cours/matiere='+matiere);
   }
 
-  findCoursByHeures(heures: number): Observable<Cours>{
-    return this.http.get<Cours>(this.host+'/cours/heures='+heures);
+
+  findCoursByHeures(heures: number): Observable<Cours[]>{
+    return this.http.get<Cours[]>(this.host+'/cours/heures='+heures);
   }
 
   deleteCours(c: Cours): Observable<void>{
@@ -31,7 +32,9 @@ export class CoursService{
   }
 
   saveCours(c: Cours): Observable<Cours>{
-    return this.http.post<Cours>(this.host+'/cours/',c);
+    console.log(c);
+    return this.http.post<Cours>(this.host+'/cours',c);
+
   }
 
   updateCours(c: Cours): Observable<Cours>{
