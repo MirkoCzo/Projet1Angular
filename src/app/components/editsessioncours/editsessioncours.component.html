@@ -10,7 +10,7 @@
       <input type="date" class="form-control" formControlName="date_debut"
              [ngClass]="{'is-invalid': submitted && sessionCoursFormGroup.controls.date_debut.errors}">
       <div *ngIf="submitted && sessionCoursFormGroup.controls.date_debut.errors" class="invalid-feedback">
-        <div *ngIf="sessionCoursFormGroup.controls.date_debut.errors.required">
+        <div *ngIf="sessionCoursFormGroup.controls.date_debut.errors.required"> // la date ne s'affiche pas et affiche jj-mm-aaaa
           date de debut obligatoire
         </div>
       </div>

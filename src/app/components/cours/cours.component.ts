@@ -36,7 +36,7 @@ export class CoursComponent implements OnInit{
       data =>{
         this.listcours = data
       }
-    )
+    );
   }
   onSearchByHeures(value: any)
   {

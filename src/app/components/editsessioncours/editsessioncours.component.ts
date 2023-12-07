@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SessionCours } from "../../entities/sessionCours.entities";
 import { SessionCoursService } from "../../services/sessionCours.service";
 
+
 @Component({
   selector: 'app-editsessioncours',
   templateUrl: './editsessioncours.component.html',
-  styleUrl: './editsessioncours.component.css'
+  styleUrl:'./editsessioncours.component.css'
 })
+
 export class EditsessioncoursComponent implements OnInit {
   sessionCoursFormGroup?: FormGroup;
   submitted = false;
@@ -36,6 +38,8 @@ export class EditsessioncoursComponent implements OnInit {
     }
 
     let sessioncoursMaj: SessionCours = this.sessionCoursFormGroup?.value;
+    console.log(sessioncoursMaj.date_debut);
+    console.log(sessioncoursMaj.date_fin);
     if (this.sessionCours) {
       sessioncoursMaj.local = this.sessionCours.local;
       sessioncoursMaj.cours = this.sessionCours.cours;
