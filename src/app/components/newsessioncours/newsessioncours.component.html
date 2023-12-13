@@ -14,7 +14,7 @@
       <td> <input type="date" class="form-control" formControlName="date_fin"></td>
       <td> <input type="text" class="form-control" formControlName="nbreinscrits"></td>
       <td> <input type="text" class="form-control" formControlName="idlocal"></td>
-      <td> <input type="text" class="form-control" formControlName="idcours"></td>
+      <td> <input type="text" class="form-control" formControlName="idcours" [ngClass]="{'readonly': true}" readonly></td>
       </tbody>
     </table>
     <button (click)="onSaveSessionCours()" class="btn btn-success">

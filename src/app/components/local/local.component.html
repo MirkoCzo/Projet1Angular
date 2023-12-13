@@ -1,1 +1,63 @@
-<p>local works!</p>
+<div class="bg-dark">
+  <form #s="ngForm" (ngSubmit)="onSearchBySigle(s.value); searchType='sigle'" class="form-check-inline">
+    <label class="text-light">Sigle: </label>
+    <input ngModel name="sigle" type="text">
+    <button class="btn btn-sm btn-outline-info m-lg-2">
+      <span class="fa fa-search"></span>
+    </button>
+  </form>
+
+  <form #p="ngForm" (ngSubmit)="onSearchByPlaces(p.value); searchType='places'" class="form-inline">
+    <label class="text-light">Places: </label>
+    <input ngModel name="places" type="text">
+    <button class="btn btn-sm btn-outline-info m-lg-2">
+      <span class="fa fa-search"></span>
+    </button>
+  </form>
+
+  <div>
+    <button (click)="onSearchAll()" class="btn btn-sm btn-outline-info ms-2">All</button>
+    <button (click)="onNewLocal()" class="btn btn-sm btn-outline-info ms-2">Ajouter un local</button>
+  </div>
+
+<ng-container *ngIf="locaux">
+  <ng-container *ngIf="locaux.length>0 else noData">
+    <table class="table bg-dark text-light">
+      <thead>
+      <th>Id local</th>
+      <th>Sigle</th>
+      <th>Places</th>
+      <th>Description</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let l of locaux">
+        <td>{{l.idlocal}}</td>
+        <td>{{l.sigle}}</td>
+        <td>{{l.places}}</td>
+        <td>{{l.description}}</td>
+        <td>
+          <button (click)=onEdit(l) class="btn btn-danger">
+            <span class = "fa fa-edit"></span>
+          </button>
+        </td>
+        <td>
+          <button (click)="onDelete(l)" class="btn btn-danger">
+            <span class = "fa fa-trash-o"></span>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #noData>
+    <ng-container *ngIf="searchType === 'sigle';">
+      Pas de local portant ce sigle
+    </ng-container>
+    <ng-container *ngIf="searchType === 'places';">
+      Pas de local ayant un nombre de places superieur ou égal
+    </ng-container>
+  </ng-template>
+</ng-container>
+</div>

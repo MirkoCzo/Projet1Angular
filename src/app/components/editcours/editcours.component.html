@@ -3,7 +3,7 @@
 
     <div class="form-group">
       <label>IDCOURS</label>
-      <input type="text" class="form-control" formControlName="idcours" readonly>
+      <input type="text" class="form-control" formControlName="idcours" [ngClass]="{'readonly': true}" readonly>
     </div>
 
     <div class="form-group">
@@ -67,4 +67,4 @@
   </ng-container>
 </div>
 
-<app-newsessioncours [coursact]="coursFormGroup" [idCours]="coursFormGroup?.get('idcours')?.value" (newSessionCours)="onAddSessionCours($event)"></app-newsessioncours>
+<app-newsessioncours [coursact]="coursFormGroup" (newSessionCours)="onAddSessionCours($event)"></app-newsessioncours>

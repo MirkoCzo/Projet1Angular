@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class LocalComponent implements OnInit{
   locaux?: Local[];
   local?: Local;
+  searchType: string = '';
   constructor(private localService: LocalService,private router: Router) {
   }
   ngOnInit(): void {
@@ -47,20 +48,23 @@ export class LocalComponent implements OnInit{
       this.localService.deleteLocal(l).subscribe(
         () => {
           this.onSearchBySigle(l);
+          alert("suppression réussie");
+          window.location.reload();
     },
         err => {
           alert(err.headers.get("error"))
         }
       );
+      window.location.reload();
     }
   }
 
   onNewLocal(){
-    //TODO
+    this.router.navigateByUrl('newlocal');
   }
 
   onEdit(l: Local){
-    //TODO
+    this.router.navigateByUrl("editlocal/"+l.idlocal);
   }
 
 }

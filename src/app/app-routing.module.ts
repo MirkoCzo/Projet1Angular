@@ -10,6 +10,8 @@ import {EditcoursComponent} from "./components/editcours/editcours.component";
 import {NewcoursComponent} from "./components/newcours/newcours.component";
 import {EditsessioncoursComponent} from "./components/editsessioncours/editsessioncours.component";
 import {NewsessioncoursComponent} from "./components/newsessioncours/newsessioncours.component";
+import {NewlocalComponent} from "./components/newlocal/newlocal.component";
+import {EditlocalComponent} from "./components/editlocal/editlocal.component";
 
 const routes: Routes = [
   {path: 'cours', component: CoursComponent},
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path:"newCours",component: NewcoursComponent},
   {path:"editCours/:idcours",component:EditcoursComponent},
   {path:"newSessionCours",component: NewsessioncoursComponent},
-  {path:"editsessioncours/:idsessioncours",component: EditsessioncoursComponent}
+  {path:"editsessioncours/:idsessioncours",component: EditsessioncoursComponent},
+  {path:"newlocal",component: NewlocalComponent},
+  {path:"editlocal/:idlocal",component: EditlocalComponent}
 
 ];
 @NgModule({

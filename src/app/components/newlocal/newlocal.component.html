@@ -1,0 +1,39 @@
+<div class="container">
+  <form [formGroup]="localFormGroup" *ngIf="localFormGroup">
+    <div class="form-group">
+      <label>Id Local</label>
+      <input type="text" class="form-control" value="{{idlocal}}" [ngClass]="{'readonly': true}" readonly>
+    </div>
+
+    <div class="form-group">
+      <label>Sigle</label>
+      <input type="text" class="form-control" formControlName="sigle"
+             [ngClass]="{'is-invalid':submitted && localFormGroup.controls.sigle.errors}">
+      <div *ngIf="submitted && localFormGroup.controls.sigle.errors" class="invalid-feedback">
+        <div *ngIf="localFormGroup.controls.sigle.errors.required">
+          Sigle Obligatoire
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Places</label>
+      <input type="text" class="form-control" formControlName="places"
+             [ngClass]="{'is-invalid': submitted && localFormGroup.controls.places.errors}">
+      <div *ngIf="submitted && localFormGroup.controls.places.errors" class="invalid-feedback">
+        <div *ngIf="localFormGroup.controls.places.errors.required">
+          Places obligatoire
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" class="form-control" formControlName="description" placeholder="Description...">
+    </div>
+
+    <button (click)="onSaveLocal()" class="btn btn-success">
+      Save
+    </button>
+  </form>
+</div>

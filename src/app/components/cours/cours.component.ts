@@ -55,13 +55,14 @@ export class CoursComponent implements OnInit{
     let v = confirm("Êtes-vous sûr de vouloir supprimer?");
     if (v) {
       this.coursService.deleteCours(c).subscribe(
-        () => { // Fonction de succès
+        () => {
           this.onSearch(c);
         },
-        err => { // Fonction d'erreur
+        err => {
           alert(err.headers.get("error"));
         }
       );
+      window.location.reload();
     }
   }
 

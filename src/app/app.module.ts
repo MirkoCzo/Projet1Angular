@@ -16,6 +16,8 @@ import { NewcoursComponent } from './components/newcours/newcours.component';
 import { EditcoursComponent } from './components/editcours/editcours.component';
 import { NewsessioncoursComponent } from './components/newsessioncours/newsessioncours.component';
 import { EditsessioncoursComponent } from './components/editsessioncours/editsessioncours.component';
+import { NewlocalComponent } from './components/newlocal/newlocal.component';
+import { EditlocalComponent } from './components/editlocal/editlocal.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { EditsessioncoursComponent } from './components/editsessioncours/editses
     NewcoursComponent,
     EditcoursComponent,
     NewsessioncoursComponent,
-    EditsessioncoursComponent
+    EditsessioncoursComponent,
+    NewlocalComponent,
+    EditlocalComponent
   ],
   imports: [
     BrowserModule,
