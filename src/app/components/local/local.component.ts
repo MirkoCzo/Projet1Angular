@@ -53,9 +53,9 @@ export class LocalComponent implements OnInit{
     if (v) {
       this.localService.deleteLocal(l).subscribe(
         () => {
-          this.onSearchBySigle(l);
+          this.onSearchAll();
           alert("Suppression réussie");
-          window.location.reload();
+          this.router.navigateByUrl('local');
         },
         err => {
           alert(err.headers.get("error"));

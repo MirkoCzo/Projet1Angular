@@ -53,9 +53,9 @@ export class FormateurComponent implements OnInit{
     if (v){
       this.formateurService.deleteFormateur(f).subscribe(
         ()=>{
-          this.formateurService.getFormateur(f.idformateur);
+          this.onSearchAll();
           alert("Suppression réussie");
-          window.location.reload();
+          this.routeur.navigateByUrl('formateur')
         },
         err=>{
           alert(err.headers.get("error"));

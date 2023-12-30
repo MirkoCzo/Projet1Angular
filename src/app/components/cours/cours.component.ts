@@ -58,7 +58,7 @@ export class CoursComponent implements OnInit{
         () => {
           this.onSearch(c);
           alert("Suppression réussie");
-          window.location.reload();
+          this.router.navigateByUrl('cours');
         },
         err => {
           alert(err.headers.get("error"));
