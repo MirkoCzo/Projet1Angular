@@ -24,6 +24,9 @@
         <div *ngIf="localFormGroup.controls.places.errors.required">
           Places obligatoire
         </div>
+        <div *ngIf="localFormGroup.controls.places.errors.min">
+          La valeur minimale autorisée est 1.
+        </div>
       </div>
     </div>
 

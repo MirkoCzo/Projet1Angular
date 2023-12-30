@@ -1,16 +1,17 @@
-<div class="bg-dark">
+<div class="form-container">
+  <h1 class="text-dark text-center">Gestion des cours</h1>
   <form #f="ngForm" (ngSubmit)="onSearch(f.value); searchType = 'matiere'" class="form-inline">
-    <label class="text-light">Matière: </label>
-    <input ngModel name="matiere" type="text">
-    <button class="btn btn-sm btn-outline-info m-lg-2">
+    <label class="text-dark">Recherche par matière:</label>
+    <input ngModel name="matiere" type="text" required>
+    <button [disabled]="!f.form.valid" class="btn btn-sm btn-outline-info m-lg-2">
       <span class="fa fa-search"></span>
     </button>
   </form>
 
   <form #h="ngForm" (ngSubmit)="onSearchByHeures(h.value); searchType = 'heures'" class="form-inline">
-    <label class="text-light">Heures: </label>
-    <input ngModel name="heures" type="text">
-    <button class="btn btn-sm btn-outline-info m-lg-2">
+    <label class="text-dark">Recherche par heures:</label>
+    <input ngModel name="heures" type="text" required>
+    <button [disabled]="!h.form.valid" class="btn btn-sm btn-outline-info m-lg-2">
       <span class="fa fa-search"></span>
     </button>
   </form>
@@ -20,41 +21,46 @@
     <button (click)="onNewCours()" class="btn btn-sm btn-outline-info ms-2">Ajouter un cours</button>
   </div>
 
+</div>
+<div>
   <ng-container *ngIf="listcours && listcours.length > 0; else noData">
-    <table class="table bg-dark text-light">
-      <thead>
-      <th>Id du cours</th>
-      <th>Matiere</th>
-      <th>Heures</th>
-      <th>Modify</th>
-      <th>Delete</th>
-      </thead>
-      <tbody>
-      <tr *ngFor="let c of listcours">
-        <td>{{c.idcours}}</td>
-        <td>{{c.matiere}}</td>
-        <td>{{c.heures}}</td>
-        <td>
-          <button (click)="onEdit(c)" class="btn btn-danger">
-            <span class="fa fa-edit"></span>
-          </button>
-        </td>
-        <td>
-          <button (click)="onDelete(c)" class="btn btn-danger">
-            <span class="fa fa-trash-o"></span>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table class="table table-dark">
+        <thead>
+        <th>Id du cours</th>
+        <th>Matiere</th>
+        <th>Heures</th>
+        <th>Modify</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of listcours">
+          <td>{{c.idcours}}</td>
+          <td>{{c.matiere}}</td>
+          <td>{{c.heures}}</td>
+          <td>
+            <button (click)="onEdit(c)" class="btn btn-danger">
+              <span class="fa fa-edit"></span>
+            </button>
+          </td>
+          <td>
+            <button (click)="onDelete(c)" class="btn btn-danger">
+              <span class="fa fa-trash-o"></span>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
   </ng-container>
 
   <ng-template #noData>
     <ng-container *ngIf="searchType === 'matiere';">
       Pas de cours portant le nom de cette matière
     </ng-container>
-   <ng-container *ngIf="searchType === 'heures';">
+    <ng-container *ngIf="searchType === 'heures';">
       Pas de cours ayant une heure supérieure ou égale à cette heure donnée
-   </ng-container>
+    </ng-container>
   </ng-template>
 </div>

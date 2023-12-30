@@ -57,12 +57,13 @@ export class CoursComponent implements OnInit{
       this.coursService.deleteCours(c).subscribe(
         () => {
           this.onSearch(c);
+          alert("Suppression réussie");
+          window.location.reload();
         },
         err => {
           alert(err.headers.get("error"));
         }
       );
-      window.location.reload();
     }
   }
 

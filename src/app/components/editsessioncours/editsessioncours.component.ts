@@ -22,8 +22,8 @@ export class EditsessioncoursComponent implements OnInit {
   ngOnInit(): void {
     this.sessionCoursFormGroup = this.fb.group({
       idsessioncours: [this.sessionCours?.idsessioncours],
-      date_debut: [this.sessionCours?.date_debut, Validators.required],
-      date_fin: [this.sessionCours?.date_fin, Validators.required],
+      date_Debut: [this.sessionCours?.date_Debut, Validators.required],
+      date_Fin: [this.sessionCours?.date_Fin, Validators.required],
       nbreinscrits: [this.sessionCours?.nbreinscrits, Validators.required],
       idlocal: [this.sessionCours?.local?.idlocal, Validators.required],
       idcours: [this.sessionCours?.cours?.idcours, Validators.required],
@@ -38,8 +38,8 @@ export class EditsessioncoursComponent implements OnInit {
     }
 
     let sessioncoursMaj: SessionCours = this.sessionCoursFormGroup?.value;
-    console.log(sessioncoursMaj.date_debut);
-    console.log(sessioncoursMaj.date_fin);
+    console.log(sessioncoursMaj.date_Debut);
+    console.log(sessioncoursMaj.date_Fin);
     if (this.sessionCours) {
       sessioncoursMaj.local = this.sessionCours.local;
       sessioncoursMaj.cours = this.sessionCours.cours;
@@ -49,6 +49,7 @@ export class EditsessioncoursComponent implements OnInit {
         error: err => alert(err.headers.get("error"))
       })
     }
+
   }
 
   onDeleteSessionCours() {

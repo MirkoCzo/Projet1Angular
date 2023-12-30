@@ -10,20 +10,27 @@ import {Router} from "@angular/router";
 })
 export class LocalComponent implements OnInit{
   locaux?: Local[];
-  local?: Local;
+  local?: Local|null=null;
   searchType: string = '';
   constructor(private localService: LocalService,private router: Router) {
   }
   ngOnInit(): void {
   }
 
-  onSearchBySigle(value: any){
+  onSearchBySigle(value: any) {
+    this.local = null;
     this.localService.getLocalBySigle(value.sigle).subscribe(
-      data =>{
-        this.local = data
+      {
+        next: data => {
+          this.local = data;
+        }
       }
     );
   }
+
+
+
+
 
   onSearchByPlaces(value: any){
     this.localService.getLocalByPlaces(value.places).subscribe(
@@ -41,23 +48,22 @@ export class LocalComponent implements OnInit{
     );
   }
 
-  onDelete(l: Local){
-    let v = confirm("Êtes-vous sur de vouloir supprimer?")
-    if(v)
-    {
+  onDelete(l: Local) {
+    let v = confirm("Êtes-vous sûr de vouloir supprimer?");
+    if (v) {
       this.localService.deleteLocal(l).subscribe(
         () => {
           this.onSearchBySigle(l);
-          alert("suppression réussie");
+          alert("Suppression réussie");
           window.location.reload();
-    },
+        },
         err => {
-          alert(err.headers.get("error"))
+          alert(err.headers.get("error"));
         }
       );
-      window.location.reload();
     }
   }
+
 
   onNewLocal(){
     this.router.navigateByUrl('newlocal');

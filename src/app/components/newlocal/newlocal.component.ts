@@ -20,7 +20,7 @@ export class NewlocalComponent implements OnInit{
   ngOnInit(): void {
     this.localFormGroup = this.fb.group({
       sigle: ["",Validators.required],
-      places: ["0", [Validators.required, Validators.min(1)]],
+      places: ["", [Validators.required, Validators.min(1)]],
       description:[""],
     });
   }

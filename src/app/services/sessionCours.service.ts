@@ -16,6 +16,7 @@ export class SessionCoursService{
   }
 
   save(sc: SessionCours): Observable<SessionCours>{
+    console.log("Essai de save (JSON) : ", JSON.stringify(sc));
     return this.http.post<SessionCours>(this.host+'/sessionCours',sc);
   }
 
@@ -23,12 +24,21 @@ export class SessionCoursService{
     return this.http.get<SessionCours>(this.host+'/sessionCours/'+idsessioncours);
   }
 
+  getAllSessionCours(): Observable<SessionCours[]>{
+    return this.http.get<SessionCours[]>(this.host+'/sessionCours/all')
+  }
+
   updateSessionCours(sc: SessionCours): Observable<SessionCours>{
     console.log(sc);
     return this.http.put<SessionCours>(this.host+'/sessionCours/'+sc.idsessioncours,sc);
   }
-  getSessionCoursCours(idCours: number): Observable<SessionCours[]>{
-    return this.http.get<SessionCours[]>(this.host+'/sessionCours/idcours/'+idCours);
+
+  getSessionCoursByNbreInscrits(nbreinscrits: number): Observable<SessionCours[]>{
+    return this.http.get<SessionCours[]>(this.host+'/sessionCours/inscrits='+nbreinscrits)
+  }
+  getSessionCoursCours(idcours: number): Observable<SessionCours[]>{
+    console.log(idcours)
+    return this.http.get<SessionCours[]>(this.host+'/sessionCours/idcours='+idcours);
   }
 
 

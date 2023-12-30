@@ -9,17 +9,33 @@
       <th>Id du cours</th>
       </thead>
       <tbody>
-
-      <td> <input type="date" class="form-control" formControlName="date_debut"></td>
-      <td> <input type="date" class="form-control" formControlName="date_fin"></td>
-      <td> <input type="text" class="form-control" formControlName="nbreinscrits"></td>
-      <td> <input type="text" class="form-control" formControlName="idlocal"></td>
-      <td> <input type="text" class="form-control" formControlName="idcours" [ngClass]="{'readonly': true}" readonly></td>
+      <tr>
+        <td>
+          <input type="date" class="form-control" formControlName="date_Debut">
+        </td>
+        <td>
+          <input type="date" class="form-control" formControlName="date_Fin">
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="nbreinscrits">
+          <div class="text-danger" *ngIf="sessionCoursFormGroup.get('nbreinscrits')?.hasError('required') && submitted">
+            Le nombre d'inscrits est obligatoire.
+          </div>
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="idlocal">
+          <div class="text-danger" *ngIf="sessionCoursFormGroup.get('idlocal')?.hasError('required') && submitted">
+            L'ID du local est obligatoire.
+          </div>
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="idcours" [ngClass]="{'readonly': true}" readonly>
+        </td>
+      </tr>
       </tbody>
     </table>
     <button (click)="onSaveSessionCours()" class="btn btn-success">
-      Save
+      Ajouter Session
     </button>
   </form>
-
 </div>

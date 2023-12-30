@@ -18,6 +18,9 @@ import { NewsessioncoursComponent } from './components/newsessioncours/newsessio
 import { EditsessioncoursComponent } from './components/editsessioncours/editsessioncours.component';
 import { NewlocalComponent } from './components/newlocal/newlocal.component';
 import { EditlocalComponent } from './components/editlocal/editlocal.component';
+import { FooterComponent } from './footer/footer.component';
+import { NewformateurComponent } from './components/newformateur/newformateur.component';
+import { EditformateurComponent } from './components/editformateur/editformateur.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { EditlocalComponent } from './components/editlocal/editlocal.component';
     NewsessioncoursComponent,
     EditsessioncoursComponent,
     NewlocalComponent,
-    EditlocalComponent
+    EditlocalComponent,
+    FooterComponent,
+    NewformateurComponent,
+    EditformateurComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,60 @@
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    overflow: hidden;
+}
+
+.form-inline {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+
+.btn-outline-info {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-info:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-bottom: 10px;
+}
+
+.table {
+    width: 100%;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.table-dark {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: 1px solid #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    color: #fff;
+    border: 1px solid #c82333;
+}

@@ -1,4 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+/* Add your global styles here */
+
 .readonly {
   background-color: dimgrey;
 }
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content{
+  padding: 40px;
+}
+
+.wrapper {
+  flex: 1;
+  background-color: #343a40;
+  color: #fff;
+}
+
+footer {
+  background-color: #343a40;
+  color: #fff;
+}
+.tbody {
+   color: black !important;
+ }
+
+.table-dark {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.table th, .table td {
+  border: 1px solid #fff;
+  text-align: center;
+}
+
+

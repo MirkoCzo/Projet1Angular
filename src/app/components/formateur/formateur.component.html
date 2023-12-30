@@ -1,1 +1,105 @@
-<p>formateur works!</p>
+<div>
+  <div class="form-container">
+    <h1 class="text-dark text-center">Gestion des formateurs</h1>
+    <form #e="ngForm" (ngSubmit)="onSearchByMail(e.value); searchType='mail'" class="form-inline">
+      <label class="text-dark">Recherche par email:</label>
+      <input ngModel name="mail" type="text" required>
+      <button [disabled]="!e.form.valid" class="btn btn-sm btn-outline-info m-lg-2">
+        <span class="fa fa-search"></span>
+      </button>
+    </form>
+
+    <br>
+
+    <form #i="ngForm" (ngSubmit)="onSearchByNomPrenom(i.value); searchType='nomPrenom'" class="form-inline">
+      <label class="text-dark">Prenom:</label><input ngModel name="prenom" type="text" required>
+      <label class="text-dark">Nom:</label><input ngModel name="nom" type="text" required>
+      <button [disabled]="!i.form.valid" class="btn btn-sm btn-outline-info m-lg-2">
+        <span class="fa fa-search"></span>
+      </button>
+    </form>
+
+    <div>
+      <button (click)="onSearchAll()" class="btn btn-sm btn-outline-info ms-2">All</button>
+      <button (click)="onNewFormateur()" class="btn btn-sm btn-outline-info ms-2">Ajouter un formateur</button>
+    </div>
+  </div>
+<br>
+
+
+  <ng-container *ngIf="formateur; else noFormateur">
+    <div class="table-container">
+      <table class="table table-dark">
+        <thead>
+        <th>Id du Formateur</th>
+        <th>Mail</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Modify</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
+        <td>{{formateur.idformateur}}</td>
+        <td>{{formateur.mail}}</td>
+        <td>{{formateur.nom}}</td>
+        <td>{{formateur.prenom}}</td>
+        <td>
+          <button (click)="onEdit(formateur)" class="btn btn-danger">
+            <span class="fa fa-edit"></span>
+          </button>
+        </td>
+        <td>
+          <button (click)="onDelete(formateur)" class="btn btn-danger">
+            <span class="fa fa-trash-o"></span>
+          </button>
+        </td>
+        </tbody>
+      </table>
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="formateurs && formateurs.length>0; else noData">
+    <div class="table-container">
+      <table class="table table-dark">
+        <thead>
+        <th>Id du Formateur</th>
+        <th>Mail</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Modify</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let f of formateurs">
+          <td>{{f.idformateur}}</td>
+          <td>{{f.mail}}</td>
+          <td>{{f.nom}}</td>
+          <td>{{f.prenom}}</td>
+          <td>
+            <button (click)="onEdit(f)" class="btn btn-danger">
+              <span class="fa fa-edit"></span>
+            </button>
+          </td>
+          <td>
+            <button (click)="onDelete(f)" class="btn btn-danger">
+              <span class="fa fa-trash-o"></span>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </ng-container>
+  <ng-template #noFormateur>
+    <ng-container *ngIf="searchType === 'mail'">
+      Pas de formateur avec ce mail.
+    </ng-container>
+  </ng-template>
+  <ng-template #noData>
+    <ng-container *ngIf="searchType === 'nomPrenom'">
+      Pas de formateur avec ce nom et ce prenom.
+    </ng-container>
+  </ng-template>
+</div>

@@ -1,10 +1,69 @@
-<form (ngSubmit)="onSearch()" class="form-inline">
-  <label>Id de session</label>
-  <input [(ngModel)]="idsession" name="idsession" type="text">
-  <button class="btn btn-sm btn-outline-info m-lg-2">
-    <span class="fa fa-search"></span>
-  </button>
-</form>
-<ng-container *ngIf="sessionCours">
-  <app-editsessioncours [sessionCours]="sessionCours"></app-editsessioncours>
-</ng-container>
+<div class="form-container">
+  <h1 class="text-dark text-center">Gestion des sessions</h1>
+  <form (ngSubmit)="onSearch()" class="form-inline">
+    <label class="text-dark">Recherche par ID de session:</label>
+    <input [(ngModel)]="idsession" name="idsession" type="text" required>
+    <button [disabled]="!idsession" class="btn btn-sm btn-outline-info m-lg-2">
+      <span class="fa fa-search"></span>
+    </button>
+  </form>
+
+  <form #c="ngForm" (ngSubmit)="onSearchByIdCours(c.value); searchType='idcours'" class="form-inline">
+    <label class="text-dark">Recherche par ID de cours:</label>
+    <input ngModel name="idcours" type="text" required>
+    <button [disabled]="!c.form.valid" type="submit" class="btn btn-sm btn-outline-info m-lg-2">
+      <span class="fa fa-search"></span>
+    </button>
+  </form>
+
+  <form #i="ngForm" (ngSubmit)="onSearchSessionCoursByNbreInscrits(i.value); searchType='nbreinscrits'" class="form-inline">
+    <label class="text-dark">Recherche par nombre d'inscrits SUPERIEUR a:</label>
+    <input ngModel name="nbreinscrits" type="text" required>
+    <button [disabled]="!i.form.valid" class="btn btn-sm btn-outline-info m-lg-2">
+      <span class="fa fa-search"></span>
+    </button>
+  </form>
+
+  <div>
+    <button (click)="onSearchAllSessionCours()" class="btn btn-sm btn-outline-info ms-2">All</button>
+  </div>
+</div>
+<div>
+  <ng-container *ngIf="sessionCoursList && sessionCoursList.length > 0; else noData">
+    <div class="table-container">
+      <table class="table table-dark">
+        <thead>
+        <th>Id Session</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th>Nombre d'inscrits</th>
+        <th>Id Local</th>
+        <th>Id Cours</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let sc of sessionCoursList">
+          <td>{{ sc.idsessioncours }}</td>
+          <td>{{ sc.date_Debut ? (sc.date_Debut | date: 'dd-MM-yyyy') : 'N/A' }}</td>
+          <td>{{ sc.date_Fin ? (sc.date_Fin | date: 'dd-MM-yyyy') : 'N/A' }}</td>
+          <td>{{ sc.nbreinscrits }}</td>
+          <td>{{ sc.local.idlocal }}</td>
+          <td>{{ sc.cours.idcours }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+  <ng-template #noData>
+    <div class="noDataMessage">
+      <ng-container *ngIf="searchType === 'idcours'">
+        Pas de session pour cet ID de cours
+      </ng-container>
+      <ng-container *ngIf="searchType === 'nbreinscrits'">
+        Pas de session avec ce nombre d'inscrits
+      </ng-container>
+    </div>
+  </ng-template>
+  <ng-container *ngIf="sessionCours">
+    <app-editsessioncours [sessionCours]="sessionCours"></app-editsessioncours>
+  </ng-container>
+</div>

@@ -1,8 +1,10 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SessionCours} from "../../entities/sessionCours.entities";
 import {SessionCoursService} from "../../services/sessionCours.service";
 import {formatDate} from "@angular/common";
+import {LocalService} from "../../services/local.service";
+
 
 @Component({
   selector: 'app-newsessioncours',
@@ -17,7 +19,7 @@ export class NewsessioncoursComponent implements OnInit, OnChanges{
   submitted = false;
   sc?: SessionCours;
 
-  constructor(private fb: FormBuilder, private sessionCoursService: SessionCoursService) {
+  constructor(private fb: FormBuilder, private sessionCoursService: SessionCoursService,private localService: LocalService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {   // Méthode appelée lorsque des changements sont détectés dans les propriétés d'entrée
@@ -33,26 +35,62 @@ export class NewsessioncoursComponent implements OnInit, OnChanges{
     }
   }
   ngOnInit(): void {
-    this.updateForm();    // Appeler la méthode updateForm pour s'assurer que le formulaire est à jour dès le début
+    this.updateForm();
     this.sessionCoursFormGroup = this.fb.group({
-        date_debut: [formatDate(new Date(), 'yyyy-MM-dd', 'en')],
-        date_fin: [formatDate(new Date(), 'yyyy-MM-dd', 'en')],
-        nbreinscrits: ['1'],
-        idlocal: ['1'],
-        idcours: [this.coursact?.get('idcours')?.value]
-      })
+      date_Debut: [formatDate(new Date(), 'yyyy-MM-dd', 'en')],
+      date_Fin: [formatDate(new Date(), 'yyyy-MM-dd', 'en')],
+      nbreinscrits: [null, [Validators.required]],
+      idlocal: [null, [Validators.required]],
+      idcours: this.coursact?.get('idcours')?.value,
+    });
   }
 
 
-  onSaveSessionCours(): void{
+  onSaveSessionCours(): void {
     this.submitted = true;
-    var nsc = this.sessionCoursFormGroup?.value;
-    nsc.cours=this.coursact?.value;
-    console.log(nsc);
-    this.sessionCoursService.save(nsc).subscribe(
-      data =>{alert("sauvegarde ok");this.sc=data;this.newSessionCours.emit(data)},
-      err => {alert(err.headers.get("error"));
-      });
+    const idLocal = this.sessionCoursFormGroup?.get('idlocal')?.value;
+
+    if (!idLocal) {
+      console.error("L'ID du local est obligatoire.");
+      return;
+    }
+
+    this.localService.getLocal(idLocal).subscribe(
+      local => {
+        if (!local) {
+          console.error("L'ID du local ne correspond à aucun local dans la base de données.");
+          return;
+        }
+
+        console.log("LOCAL JSON: ", JSON.stringify(local));
+
+        const newSessionCours = {
+          ...this.sessionCoursFormGroup?.value,
+        };
+        newSessionCours.cours = this.coursact?.value;
+        newSessionCours.local = local;
+
+        console.log("Valeur de new session cours : ", JSON.stringify(newSessionCours));
+        this.sessionCoursService.save(newSessionCours).subscribe(
+          data => {
+            alert("Sauvegarde OK");
+            this.sc = data;
+            this.newSessionCours.emit(data);
+          },
+          err => {
+            alert("Erreur lors de la sauvegarde : " + err.error);
+          }
+        );
+      },
+      err => {
+        alert("Local d'ID:"+idLocal+" pas présent dans la BD");
+      }
+    );
   }
+
+
+
+
+
 
 }

@@ -7,10 +7,10 @@
 
     <div class="form-group">
       <label>Date de début</label>
-      <input type="date" class="form-control" formControlName="date_debut"
-             [ngClass]="{'is-invalid': submitted && sessionCoursFormGroup.controls.date_debut.errors}">
-      <div *ngIf="submitted && sessionCoursFormGroup.controls.date_debut.errors" class="invalid-feedback">
-        <div *ngIf="sessionCoursFormGroup.controls.date_debut.errors.required"> // la date ne s'affiche pas et affiche jj-mm-aaaa
+      <input type="date" class="form-control" formControlName="date_Debut"
+             [ngClass]="{'is-invalid': submitted && sessionCoursFormGroup.controls.date_Debut.errors}">
+      <div *ngIf="submitted && sessionCoursFormGroup.controls.date_Debut.errors" class="invalid-feedback">
+        <div *ngIf="sessionCoursFormGroup.controls.date_Debut.errors.required">
           date de debut obligatoire
         </div>
       </div>
@@ -18,10 +18,10 @@
 
     <div class="form-group">
       <label>Date de fin</label>
-      <input type="date" class="form-control" formControlName="date_fin"
-             [ngClass]="{'is-invalid': submitted && sessionCoursFormGroup.controls.date_fin.errors}">
-      <div *ngIf="submitted && sessionCoursFormGroup.controls.date_fin.errors" class="invalid-feedback">
-        <div *ngIf="sessionCoursFormGroup.controls.date_fin.errors.required">
+      <input type="date" class="form-control" formControlName="date_Fin"
+             [ngClass]="{'is-invalid': submitted && sessionCoursFormGroup.controls.date_Fin.errors}">
+      <div *ngIf="submitted && sessionCoursFormGroup.controls.date_Fin.errors" class="invalid-feedback">
+        <div *ngIf="sessionCoursFormGroup.controls.date_Fin.errors.required">
           date de fin obligatoire
         </div>
       </div>
@@ -49,15 +49,15 @@
       <input type="text" class="form-control" formControlName="idcours" [ngClass]="{'readonly': true}" readonly>
     </div>
 
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <nav class="navbar navbar-expand-sm">
       <ul class="navbar navbar-nav">
         <li class="nav-item">
           <button (click)="onUpdateSessionCours()" class="btn btn-success">
-            Save
+            Modify
           </button>
         </li>
         <li class="nav-item">
-          <button (click)="onDeleteSessionCours()" class="btn btn-success">
+          <button (click)="onDeleteSessionCours()" class="btn btn-danger">
             Delete
           </button>
         </li>
