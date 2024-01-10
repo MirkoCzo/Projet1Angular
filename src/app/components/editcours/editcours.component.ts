@@ -15,6 +15,7 @@ export class EditcoursComponent implements OnInit{
   submitted = false;
   idCours: number;
   sessionCours? : SessionCours[];
+  totalInscrits: number = 0;
 
   constructor(private coursService: CoursService,private sessionCoursService: SessionCoursService,private fb:
   FormBuilder,activatedRoute: ActivatedRoute) {
@@ -40,11 +41,18 @@ export class EditcoursComponent implements OnInit{
     )
   }
 
-  onSeeSessionCours(): void{
+  onSeeSessionCours(): void {
     this.sessionCoursService.getSessionCoursCours(this.idCours).subscribe(
-      data =>{this.sessionCours=data}
-    )
+      data => {
+        this.sessionCours = data;
+        this.totalInscrits = 0;
+        for (let sc of this.sessionCours) {
+          this.totalInscrits += sc.nbreinscrits;
+        }
+      }
+    );
   }
+
 
 
   onAddSessionCours(sc:SessionCours): void{

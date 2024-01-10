@@ -19,11 +19,13 @@ export class CoursService{
   }
 
   findCoursByMatiere(matiere: string): Observable<Cours[]>{
+    console.log(matiere)
     return this.http.get<Cours[]>(this.host+'/cours/matiere='+matiere);
   }
 
 
   findCoursByHeures(heures: number): Observable<Cours[]>{
+    console.log(heures)
     return this.http.get<Cours[]>(this.host+'/cours/heures='+heures);
   }
 
@@ -40,4 +42,11 @@ export class CoursService{
   updateCours(c: Cours): Observable<Cours>{
     return this.http.put<Cours>(this.host+'/cours/'+c.idcours,c);
   }
+
+  findAllCoursesWithSessionsInRange(searchDate: string): Observable<Cours[]> {
+    console.log(searchDate);
+    return this.http.get<Cours[]>(this.host + '/cours/givenDate=' + searchDate);
+  }
+
+
 }

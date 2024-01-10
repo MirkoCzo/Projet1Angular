@@ -16,6 +16,16 @@
     </button>
   </form>
 
+  <<form #d="ngForm" (ngSubmit)="onSearchByDate(d.value.searchDate); searchType = 'givenDate'" class="form-inline">
+  <label class="text-dark">Recherche par date (format YYYY-MM-DD):</label>
+  <input ngModel name="searchDate" type="text" required pattern="\d{4}-\d{2}-\d{2}">
+  <button [disabled]="!d.form.valid" class="btn btn-sm btn-outline-info m-lg-2">
+    <span class="fa fa-search"></span>
+  </button>
+</form>
+
+
+
   <div>
     <button (click)="onSearchAll()" class="btn btn-sm btn-outline-info ms-2">All</button>
     <button (click)="onNewCours()" class="btn btn-sm btn-outline-info ms-2">Ajouter un cours</button>
@@ -61,6 +71,9 @@
     </ng-container>
     <ng-container *ngIf="searchType === 'heures';">
       Pas de cours ayant une heure supérieure ou égale à cette heure donnée
+    </ng-container>
+    <ng-container *ngIf="searchType === 'givenDate';">
+      Aucun cours trouvé ayant une session commençant avant ou à cette date et finissant après ou à cette date
     </ng-container>
   </ng-template>
 </div>

@@ -72,5 +72,14 @@ export class CoursComponent implements OnInit{
     this.router.navigateByUrl('editCours/'+c.idcours);
   }
 
+  onSearchByDate(searchDate: string) {
+    this.coursService.findAllCoursesWithSessionsInRange(searchDate).subscribe(
+      data => {
+        this.listcours = data;
+      }
+    );
+  }
+
+
 
 }

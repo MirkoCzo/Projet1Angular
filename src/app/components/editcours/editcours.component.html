@@ -56,11 +56,15 @@
           <td>{{sc.idsessioncours}}</td>
           <td>{{ sc.date_Debut ? (sc.date_Debut | date: 'dd-MM-yyyy') : 'N/A' }}</td>
           <td>{{ sc.date_Fin ? (sc.date_Debut | date: 'dd-MM-yyyy') : 'N/A'}}</td>
-          <td>{{sc.nbreinscrits}}</td>
+          <td>
+            <span *ngIf="sc.nbreinscrits === 0">pas d'inscrits</span>
+            <span *ngIf="sc.nbreinscrits !== 0">{{ sc.nbreinscrits }}</span>
+          </td>
           <td>{{sc.local.idlocal}}</td>
         </tr>
         </tbody>
       </table>
+      <div class="text-center">Total des inscrits : {{ totalInscrits }}</div>
     </ng-container>
     <ng-template #vide>
       Aucune session pour ce cours
